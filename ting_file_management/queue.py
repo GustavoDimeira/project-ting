@@ -10,7 +10,7 @@ class Queue(AbstractQueue):
 
     def __len__(self):
         return self.__length
-    
+
     def show_values(self, value):
         crr_value = self.head_value
         for x in range(self.__length):
@@ -44,7 +44,7 @@ class Queue(AbstractQueue):
     def search(self, index):
         if (index >= self.__length or index < 0):
             raise IndexError("Índice Inválido ou Inexistente")
-        
+
         value = self.head_value
         while (index > 0):
             value = value.next
