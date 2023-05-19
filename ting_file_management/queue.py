@@ -11,12 +11,6 @@ class Queue(AbstractQueue):
     def __len__(self):
         return self.__length
 
-    def show_values(self, value):
-        crr_value = self.head_value
-        for x in range(self.__length):
-            print("Posição: ", x, "\nValor: ", crr_value.value, "\n\n")
-            crr_value = crr_value.next
-
     def enqueue(self, value):
         last_value = Node(value)
         old_last = self.tail_value
