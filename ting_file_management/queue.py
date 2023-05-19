@@ -28,7 +28,8 @@ class Queue(AbstractQueue):
     def dequeue(self):
         old_first = self.head_value
         new_first = old_first.next
-        new_first.previous = None
+        if (self.__length > 1):
+            new_first.previous = None
 
         self.head_value = new_first
         self.__length -= 1
