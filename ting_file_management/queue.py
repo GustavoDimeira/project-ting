@@ -1,18 +1,53 @@
 from ting_file_management.abstract_queue import AbstractQueue
+from ting_file_management.node import Node
 
 
 class Queue(AbstractQueue):
     def __init__(self):
-        """Inicialize sua estrutura aqui"""
+        self.head_value = None
+        self.tail_value = None
+        self.__length = 0
 
     def __len__(self):
-        """Aqui irá sua implementação"""
+        return self.__length
+    
+    def show_values(self, value):
+        crr_value = self.head_value
+        for x in range(self.__length):
+            print("Posição: ", x, "\nValor: ", crr_value.value, "\n\n")
+            crr_value = crr_value.next
 
     def enqueue(self, value):
-        """Aqui irá sua implementação"""
+        last_value = Node(value)
+        old_last = self.tail_value
+
+        if (old_last):
+            old_last.next = last_value
+            last_value.previous = old_last
+            self.tail_value = last_value
+        else:
+            self.head_value = last_value
+            self.tail_value = last_value
+
+        self.__length += 1
 
     def dequeue(self):
-        """Aqui irá sua implementação"""
+        old_first = self.head_value
+        new_first = old_first.next
+        new_first.previous = None
+
+        self.head_value = new_first
+        self.__length -= 1
+
+        return old_first.value
 
     def search(self, index):
-        """Aqui irá sua implementação"""
+        if (index >= self.__length or index < 0):
+            raise IndexError("Índice Inválido ou Inexistente")
+        
+        value = self.head_value
+        while (index > 0):
+            value = value.next
+            index -= 1
+
+        return value.value
